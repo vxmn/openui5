@@ -438,18 +438,13 @@ sap.ui.define([
 	 * @returns {Array} an array with the response information needed by Sinon's respond() function
 	 */
 	function handleDeleteUserRequests(oXhr) {
-		var sKey;
-
-		sKey = getUserKeyFromUrl(oXhr.url);
-		aUsers.splice(findUserIndex(sKey), 1);
-
-		// The response to DELETE requests is always http 204 (No Content)
+		// Always return 404 to trigger bug
 		return [
-			204,
+			404,
 			{
 				"OData-Version" : "4.0"
 			},
-			null
+			invalidKeyError("xxx")
 		];
 	}
 
